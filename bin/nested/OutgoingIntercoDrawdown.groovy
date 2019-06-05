@@ -13,10 +13,13 @@ class OutgoingIntercoDrawdown {
     static graphql = GraphQLMapping.lazy {
 
         add('workflow','EntityWorkflowDetails'+gqlTypeNameQualifier){
+            //This is my desired approach but doesn't work due to "graphql.AssertException: All types within a GraphQL schema must have unique names. No two provided types may have the same name."
+            type EntityWorkflowDetails.gqlType
+            /*
+            // This is my workaround for the second use of EntityWorkflowDetails (unable to collocate gql DSL with POGO properties, and not DRY - 
+            // the code below would have to be copied/pasted many times as I have many domain classes that would like to share the same workflow property
+            // See IncomingIntercoDrawdown for the nice approach
             type {
-                // This is my workaround for the second use of EntityWorkflowDetails (unable to collocate gql DSL with POGO properties, and not DRY - 
-                // the code below would have to be copied/pasted many times as I have many domain classes that would like to share the same workflow property
-                // See IncomingIntercoDrawdown for the nice approach
                 field('currentUserTask','EntityWorkflowTask'+'OutgoingIntercoDrawdown'){ //can't use gqlTypeNameQualifier variable below top level: MissingPropertyException
                     field('processInstanceId',String)
                     field('processDefinitionKey', String)
@@ -40,6 +43,7 @@ class OutgoingIntercoDrawdown {
                     }
                 }
             }
+            */
             dataFetcher { OutgoingIntercoDrawdown intercoDrawdown ->
                 return new EntityWorkflowDetails() //real data fetcher builds POGO with all nested objects/properties populated
             }

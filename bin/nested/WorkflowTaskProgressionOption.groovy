@@ -8,7 +8,7 @@ class WorkflowTaskProgressionOption {
         field('seqFlowId',String)
         field('assigneeOptions','ProgressionOptionAssignee',ProgressionOptionAssignee.gqlType)
         field('commentIsRequired',Boolean)
-        collection true //because this forms part of a List on the parent
+        collection true
     }
 
     String nextActivityId
