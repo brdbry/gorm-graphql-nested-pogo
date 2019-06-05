@@ -5,7 +5,7 @@ import org.grails.gorm.graphql.entity.dsl.GraphQLMapping
 class IncomingIntercoDrawdown {
     
     String id
-    Strning locationId
+    String locationId
 
     static transients = ['workflow']
 
@@ -35,5 +35,3 @@ class IncomingIntercoDrawdown {
 
  
 }
-
-```
